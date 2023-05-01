@@ -54,6 +54,10 @@ public class StringConverter implements AM {
         // Generate last prices using the seed value
         double[] lastPrices = generateLastPrices(seed, numDays, initialPrice, 0.0, 0.01);
 
+        for (int i=0; i<numDays; i++){
+            System.out.println(i + " "+lastPrices[i]);
+        }
+
         // Calculate the mean and standard deviation of the daily returns
         double mean = calculateMean(lastPrices);
         double stdDev = calculateStdDev(lastPrices);
