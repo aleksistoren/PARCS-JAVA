@@ -52,7 +52,7 @@ public class StringConverter implements AM {
         double initialPrice = 100.0; // initial price
 
         // Generate last prices using the seed value
-        double[] lastPrices = generateLastPrices(seed, numDays, initialPrice);
+        double[] lastPrices = generateLastPrices(seed, numDays, initialPrice, 0.0, 0.01);
 
         // Calculate the mean and standard deviation of the daily returns
         double mean = calculateMean(lastPrices);
@@ -79,14 +79,14 @@ public class StringConverter implements AM {
 	    System.out.println("over and out.");
     }
 
-    private static double[] generateLastPrices(long seed, int numDays, double initialPrice) {
+    private static double[] generateLastPrices(long seed, int numDays, double initialPrice, double trend, double noise) {
         Random random = new Random(seed);
         double[] lastPrices = new double[numDays];
         lastPrices[0] = initialPrice;
 
         for (int i = 1; i < numDays; i++) {
-            double randomNum = random.nextGaussian() * 0.01 + 0.005; // mean 0.005, standard deviation 0.01
-            lastPrices[i] = lastPrices[i-1] * (1 + randomNum);
+            double randomNum = random.nextGaussian() * noise;
+            lastPrices[i] = lastPrices[i-1] * (1 + trend) + randomNum;
         }
 
         return lastPrices;
