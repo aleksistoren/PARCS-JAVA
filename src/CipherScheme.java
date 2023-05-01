@@ -3,9 +3,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CipherScheme implements Serializable {
-    private final Map<Character, Character> scheme;
+    //private final Map<Character, Character> scheme;
 
-    public CipherScheme(String letters, String counterparts) throws IllegalArgumentException {
+    /*public CipherScheme(String letters, String counterparts) throws IllegalArgumentException {
         List<Character> letterList = parseString(letters);
         List<Character> counterpartList = parseString(counterparts);
         scheme = new TreeMap<>();
@@ -20,18 +20,18 @@ public class CipherScheme implements Serializable {
                 scheme.put(letterList.get(i), counterpartList.get(i));
             }
         }
-    }
+    }*/
 
-    public Character convertLetter(Character c) {
+    /*public Character convertLetter(Character c) {
 	char cNormalized = Character.toLowerCase(c);
         if (scheme.containsKey(cNormalized)) {
             return Character.isLowerCase(c) ?
 		    scheme.get(cNormalized) :
 		    Character.toUpperCase(scheme.get(cNormalized));
         } else return c;
-    }
+    }*/
 
-    private List<Character> parseString(String line) {
+    /*private List<Character> parseString(String line) {
         return Arrays.stream(line.split("\\s")).map(s -> Character.toLowerCase(s.charAt(0))).collect(Collectors.toList());
-    }
+    }*/
 }

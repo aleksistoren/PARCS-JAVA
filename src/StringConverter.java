@@ -4,9 +4,9 @@ import java.util.Random;
 
 
 public class StringConverter implements AM {
-    private CipherScheme scheme;
+    //private CipherScheme scheme;
 
-    public String convert(String message) throws IllegalStateException{
+    /*public String convert(String message) throws IllegalStateException{
         if (scheme == null) {
             throw new IllegalStateException("Scheme not set");
         }
@@ -15,20 +15,20 @@ public class StringConverter implements AM {
             builder.append(scheme.convertLetter(c));
         }
         return builder.toString();
-    }
+    }*/
 
-    private String process(CipherScheme scheme, String message) {
+    /*private String process(CipherScheme scheme, String message) {
         this.setScheme(scheme);
         System.out.println("[" + scheme.toString() + "] Schema set.");
         System.out.println("[" + message + "] Message processed...");
         String result = convert(message);
         System.out.println("[" + result + "] done.");
         return result;
-    }
+    }*/
 
-    public void setScheme(CipherScheme scheme) {
+    /*public void setScheme(CipherScheme scheme) {
         this.scheme = scheme;
-    }
+    }*/
 
 
     @Override
@@ -38,7 +38,7 @@ public class StringConverter implements AM {
 
         Data data = (Data)amInfo.parent.readObject();
 
-	System.out.println("Read data: " + data);
+	    //System.out.println("Read data: " + data);
 
         System.out.println("Read data: " + data.number_of_simulations);
         System.out.println("Read data: " + data.seed);
