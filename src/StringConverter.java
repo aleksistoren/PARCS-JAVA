@@ -67,7 +67,7 @@ public class StringConverter implements AM {
         for (int j=0; j<data.number_of_simulations; j++) {
             for (int i = 1; i < numDays; i++) {
                 double randomNum = random.nextGaussian() * stdDev + mean;
-                futurePrices[i] = futurePrices[i - 1] * Math.exp(randomNum);
+                futurePrices[i] = futurePrices[i - 1] + Math.exp(randomNum);
             }
             profit += futurePrices[numDays-1] - futurePrices[0];
         }
