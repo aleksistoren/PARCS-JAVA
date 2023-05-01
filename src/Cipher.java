@@ -28,7 +28,7 @@ public class Cipher {
         long time = System.currentTimeMillis();
         for (int i = 0; i < workers_n; i++) {
             int chunk = i == workers_n - 1 ?
-                    number_of_simulations/workers_n - number_of_simulations/workers_n*(workers_n-1):
+                    number_of_simulations - number_of_simulations/workers_n*(workers_n-1):
                     number_of_simulations/workers_n;
             Data worker_data = new Data(i, data.seed, chunk);
 
