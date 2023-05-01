@@ -38,7 +38,7 @@ public class Main {
             channel newChannel = newPoint.createChannel();
             System.out.println("Channel created");
 
-            newPoint.execute("StringConverter");
+            newPoint.execute("MonteCarlo");
             newChannel.write(worker_data);
             System.out.println("Execution has started. Waiting for result...");
 
