@@ -58,7 +58,6 @@ public class StringConverter implements AM {
         }
 
         // Calculate the mean and standard deviation of the daily returns
-        double mean = calculateMean(lastPrices);
         double stdDev = calculateStdDev(lastPrices);
 
         // Simulate future prices using Monte Carlo simulation
@@ -69,7 +68,7 @@ public class StringConverter implements AM {
         Random random = new Random();
         for (int j=0; j<data.number_of_simulations; j++) {
             for (int i = 1; i < numDays; i++) {
-                double random_change = mean + stdDev * random.nextGaussian();
+                double random_change = stdDev * random.nextGaussian();
                 futurePrices[i] = futurePrices[i - 1] + random_change;
             }
             profit += futurePrices[numDays-1] - futurePrices[0];
