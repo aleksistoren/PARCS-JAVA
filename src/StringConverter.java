@@ -34,7 +34,7 @@ public class StringConverter implements AM {
     @Override
     public void run(AMInfo amInfo) {
 
-	System.out.println("Running worker...");
+	    System.out.println("Running worker...");
 
         Data data = (Data)amInfo.parent.readObject();
 
@@ -43,10 +43,9 @@ public class StringConverter implements AM {
         System.out.println("Read data: " + data.number_of_simulations);
         System.out.println("Read data: " + data.seed);
         System.out.println("Read data: " + data.workers_n);
+        System.out.println("Read data, DONE!!!");
 
-        //CipherScheme cipherScheme = data.scheme;
-        //System.out.println("[" + cipherScheme.toString() + "] Schema set.");
-        //String message = data.message;
+
         long seed = 123456; // seed value
         int numDays = 365; // number of days to simulate
         double initialPrice = 100.0; // initial price
