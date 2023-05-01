@@ -3,32 +3,7 @@ import parcs.AMInfo;
 import java.util.Random;
 
 
-public class StringConverter implements AM {
-    //private CipherScheme scheme;
-
-    /*public String convert(String message) throws IllegalStateException{
-        if (scheme == null) {
-            throw new IllegalStateException("Scheme not set");
-        }
-        StringBuilder builder = new StringBuilder();
-        for (Character c : message.toCharArray()) {
-            builder.append(scheme.convertLetter(c));
-        }
-        return builder.toString();
-    }*/
-
-    /*private String process(CipherScheme scheme, String message) {
-        this.setScheme(scheme);
-        System.out.println("[" + scheme.toString() + "] Schema set.");
-        System.out.println("[" + message + "] Message processed...");
-        String result = convert(message);
-        System.out.println("[" + result + "] done.");
-        return result;
-    }*/
-
-    /*public void setScheme(CipherScheme scheme) {
-        this.scheme = scheme;
-    }*/
+public class MonteCarlo implements AM {
 
 
     @Override

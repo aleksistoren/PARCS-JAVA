@@ -5,11 +5,11 @@ import java.util.Scanner;
 import java.io.File;
 import parcs.*;
 
-public class Cipher {
+public class Main {
 
     public static void main(String[] args) throws Exception {
         task curTask = new task();
-        curTask.addJarFile("StringConverter.jar");
+        curTask.addJarFile("MonteCarlo.jar");
         Data data = fromFile(curTask.findFile("input"));
 
         System.out.println("Number of workers = "+data.workers_n);

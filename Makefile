@@ -1,19 +1,19 @@
 all: run
 
 clean:
-	rm -f out/Cipher.jar out/StringConverter.jar
+	rm -f out/Main.jar out/MonteCarlo.jar
 
-out/Cipher.jar: out/parcs.jar src/Cipher.java src/CipherScheme.java src/Data.java
-	@javac -cp out/parcs.jar src/Cipher.java src/CipherScheme.java src/Data.java
-	@jar cf out/Cipher.jar -C src Cipher.class -C src CipherScheme.class -C src Data.class
-	@rm -f src/Cipher.class src/CipherScheme.class src/Data.class
+out/Main.jar: out/parcs.jar src/Main.java src/Data.java
+	@javac -cp out/parcs.jar src/Main.java src/Data.java
+	@jar cf out/Main.jar -C src Main.class -C src Data.class
+	@rm -f src/Main.class src/Data.class
 
-out/StringConverter.jar: out/parcs.jar src/StringConverter.java src/CipherScheme.java src/Data.java
-	@javac -cp out/parcs.jar src/StringConverter.java src/CipherScheme.java src/Data.java
-	@jar cf out/StringConverter.jar -C src StringConverter.class -C src CipherScheme.class -C src Data.class
-	@rm -f src/StringConverter.class src/CipherScheme.class src/Data.class
+out/MonteCarlo.jar: out/parcs.jar src/MonteCarlo.java src/Data.java
+	@javac -cp out/parcs.jar src/MonteCarlo.java src/Data.java
+	@jar cf out/MonteCarlo.jar -C src MonteCarlo.class -C src Data.class
+	@rm -f src/MonteCarlo.class src/Data.class
 
-build: out/Cipher.jar out/StringConverter.jar
+build: out/Main.jar out/MonteCarlo.jar
 
-run: out/Cipher.jar out/StringConverter.jar
-	@cd out && java -cp 'parcs.jar:Cipher.jar' Cipher
+run: out/Main.jar out/MonteCarlo.jar
+	@cd out && java -cp 'parcs.jar:Main.jar' Main
