@@ -12,6 +12,8 @@ public class Cipher {
         curTask.addJarFile("StringConverter.jar");
         Data data = fromFile(curTask.findFile("input"));
 
+        System.out.println("Number of workers = "+data.workers_n);
+
         AMInfo info = new AMInfo(curTask, null);
         splitTask(info, data);
 
