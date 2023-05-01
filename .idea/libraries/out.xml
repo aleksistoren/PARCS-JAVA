@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="out">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/Cipher.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/parcs.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/StringConverter.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
