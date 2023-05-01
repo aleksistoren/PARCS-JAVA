@@ -47,21 +47,65 @@ public class StringConverter implements AM {
         //CipherScheme cipherScheme = data.scheme;
         //System.out.println("[" + cipherScheme.toString() + "] Schema set.");
         //String message = data.message;
-        Random random = new Random(data.seed);
-        double INITIAL = 100;
-        int good = 0;
-        for (int iteration = 0; iteration < data.number_of_simulations; iteration++) {
-            double initial = INITIAL;
-            for (int i = 1; i < 1000; i++) {
-                double randomNum = random.nextGaussian() * 0.01 + 0.005; // mean 0.005, standard deviation 0.01
-                initial = initial * (1 + randomNum);
+        long seed = 123456; // seed value
+        int numDays = 365; // number of days to simulate
+        double initialPrice = 100.0; // initial price
+
+        // Generate last prices using the seed value
+        double[] lastPrices = generateLastPrices(seed, numDays, initialPrice);
+
+        // Calculate the mean and standard deviation of the daily returns
+        double mean = calculateMean(lastPrices);
+        double stdDev = calculateStdDev(lastPrices);
+
+        // Simulate future prices using Monte Carlo simulation
+        double[] futurePrices = new double[numDays];
+        futurePrices[0] = lastPrices[lastPrices.length-1]; // use the last price as the initial price
+        double profit = 0;
+
+        Random random = new Random();
+        for (int j=0; j<data.number_of_simulations; j++) {
+            for (int i = 1; i < numDays; i++) {
+                double randomNum = random.nextGaussian() * stdDev + mean;
+                futurePrices[i] = futurePrices[i - 1] * Math.exp(randomNum);
             }
-            if (initial > INITIAL) good++;
+            profit += futurePrices[numDays-1] - futurePrices[0];
         }
-        String result = "Completed " + Integer.toString(data.workers_n) +" "+Double.toString(good*1.0/data.number_of_simulations);
+        profit /= data.number_of_simulations;
+        String result = "Completed " + Integer.toString(data.workers_n) +" "+Double.toString(profit);
 	    System.out.println("Writing result...");
 
         amInfo.parent.write(result);
 	    System.out.println("over and out.");
+    }
+
+    private static double[] generateLastPrices(long seed, int numDays, double initialPrice) {
+        Random random = new Random(seed);
+        double[] lastPrices = new double[numDays];
+        lastPrices[0] = initialPrice;
+
+        for (int i = 1; i < numDays; i++) {
+            double randomNum = random.nextGaussian() * 0.01 + 0.005; // mean 0.005, standard deviation 0.01
+            lastPrices[i] = lastPrices[i-1] * (1 + randomNum);
+        }
+
+        return lastPrices;
+    }
+
+    private static double calculateMean(double[] prices) {
+        double sum = 0.0;
+        for (double price : prices) {
+            sum += price;
+        }
+        return sum / prices.length;
+    }
+
+    private static double calculateStdDev(double[] prices) {
+        double mean = calculateMean(prices);
+        double sum = 0.0;
+        for (double price : prices) {
+            sum += Math.pow(price - mean, 2);
+        }
+        return Math.sqrt(sum / (prices.length - 1));
     }
 }
